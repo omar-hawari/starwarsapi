@@ -1,4 +1,4 @@
-package com.omarhawari.myapplication
+package com.omarhawari.starwarstrivia
 
 import org.junit.Test
 

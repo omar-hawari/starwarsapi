@@ -1,4 +1,4 @@
-package com.omarhawari.myapplication
+package com.omarhawari.starwarstrivia
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

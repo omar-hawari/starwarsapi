@@ -1,4 +1,4 @@
-package com.omarhawari.myapplication.ui.theme
+package com.omarhawari.starwarstrivia.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
