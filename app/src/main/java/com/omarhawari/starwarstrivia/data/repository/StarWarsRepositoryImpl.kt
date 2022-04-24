@@ -1,8 +1,7 @@
 package com.omarhawari.starwarstrivia.data.repository
 
 import com.omarhawari.starwarstrivia.data.remote.StarWarsApi
-import com.omarhawari.starwarstrivia.data.remote.dto.FilmDto
-import com.omarhawari.starwarstrivia.data.remote.dto.GenericResponse
+import com.omarhawari.starwarstrivia.data.remote.dto.*
 import com.omarhawari.starwarstrivia.domain.repository.StarWarsRepository
 import javax.inject.Inject
 
@@ -13,4 +12,13 @@ class StarWarsRepositoryImpl @Inject constructor(
 
     override suspend fun getFilmDetails(filmIndex: Int): FilmDto =
         api.getFilms(filmIndex)
+
+    override suspend fun getCharacter(characterPath: String): CharacterDto = api.getCharacter(characterPath)
+
+
+    override suspend fun getSpaceShip(spaceShipPath: String): SpaceShipDto = api.getSpaceShip(spaceShipPath)
+
+    override suspend fun getPlanet(planetPath: String): PlanetDto = api.getPlanet(planetPath)
+
+    override suspend fun getVehicle(vehiclePath: String): VehicleDto = api.getVehicle(vehiclePath)
 }

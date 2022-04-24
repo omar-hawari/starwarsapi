@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omarhawari.starwarstrivia.common.Constants
 import com.omarhawari.starwarstrivia.domain.models.Film
-import com.omarhawari.starwarstrivia.domain.use_cases.GetFilmDetailUseCase
-import com.omarhawari.starwarstrivia.domain.use_cases.GetFilmsUseCase
+import com.omarhawari.starwarstrivia.domain.use_cases.*
 import com.omarhawari.starwarstrivia.presentation.films.FilmsState
 import com.plcoding.cryptocurrencyappyt.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +18,10 @@ import javax.inject.Inject
 @HiltViewModel
 class FilmDetailViewModel @Inject constructor(
     private val getFilmDetailUseCase: GetFilmDetailUseCase,
+    private val getCharacterUseCase: GetCharacterUseCase,
+    private val getSpaceShipUseCase: GetSpaceShipUseCase,
+    private val getPlanetUseCase: GetPlanetUseCase,
+    private val getVehicleUseCase: GetVehicleUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -44,7 +47,60 @@ class FilmDetailViewModel @Inject constructor(
                 is Resource.Error -> FilmDetailState(error = result.message ?: "Unexpected error.")
                 is Resource.Loading -> FilmDetailState(isLoading = true)
             }
-            println(_state.value)
+            if (result is Resource.Success) {
+                _state.value.film!!.characters.forEachIndexed { index, it ->
+                    getCharacter(it, index = index)
+                }
+                _state.value.film!!.starships.forEachIndexed { index, it ->
+                    getSpaceShip(it, index = index)
+                }
+                _state.value.film!!.planets.forEachIndexed { index, it ->
+                    getPlanet(it, index = index)
+                }
+                _state.value.film!!.vehicles.forEachIndexed { index, it ->
+                    getVehicle(it, index = index)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getCharacter(path: String, index: Int) {
+        getCharacterUseCase(path).onEach { result ->
+            if (result is Resource.Success) {
+                _state.value =
+                    result.data?.let { _state.value.addCharacter(it, index) }
+                        ?: _state.value
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getSpaceShip(path: String, index: Int) {
+        getSpaceShipUseCase(path).onEach { result ->
+            if (result is Resource.Success) {
+                _state.value =
+                    result.data?.let { _state.value.addSpaceShip(it, index) }
+                        ?: _state.value
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getVehicle(path: String, index: Int) {
+        getVehicleUseCase(path).onEach { result ->
+            if (result is Resource.Success) {
+                _state.value =
+                    result.data?.let { _state.value.addVehicle(it, index) }
+                        ?: _state.value
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getPlanet(path: String, index: Int) {
+        getPlanetUseCase(path).onEach { result ->
+            if (result is Resource.Success) {
+                _state.value =
+                    result.data?.let { _state.value.addPlanet(it, index) }
+                        ?: _state.value
+            }
         }.launchIn(viewModelScope)
     }
 
