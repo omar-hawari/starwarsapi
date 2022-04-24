@@ -34,7 +34,6 @@ class FilmsViewModel @Inject constructor(
                 is Resource.Error -> FilmsState(error = result.message ?: "Unexpected error.")
                 is Resource.Loading -> FilmsState(isLoading = true)
             }
-            println("HERERERERERERE")
             println(_state.value)
         }.launchIn(viewModelScope)
     }

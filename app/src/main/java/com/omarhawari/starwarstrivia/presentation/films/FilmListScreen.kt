@@ -19,6 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.omarhawari.starwarstrivia.common.Constants.PARAM_FILM_INDEX
+import com.omarhawari.starwarstrivia.presentation.Screen
 import com.omarhawari.starwarstrivia.presentation.films.components.FilmItem
 
 
@@ -35,7 +37,7 @@ fun FilmList(navController: NavController, viewModel: FilmsViewModel = hiltViewM
             TopAppBar {
                 Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = "STAR WARS TRIVIA",
+                        text = "STAR WARS",
                         color = Color.White,
                         fontSize = 24.sp,
                     )
@@ -43,8 +45,6 @@ fun FilmList(navController: NavController, viewModel: FilmsViewModel = hiltViewM
             }
         }
     ) { _ ->
-
-
         SwipeRefresh(
             state = swipeRefreshState,
             onRefresh = {
@@ -59,7 +59,15 @@ fun FilmList(navController: NavController, viewModel: FilmsViewModel = hiltViewM
 
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.value.films) { film ->
-                        FilmItem(film = film, navController = navController)
+                        FilmItem(film = film, navController = navController) {
+                            navController.navigate(
+                                Screen.FilmDetailScreen.route + "/${
+                                    state.value.films.indexOf(
+                                        film
+                                    ) + 1
+                                }"
+                            )
+                        }
                     }
                 }
                 if (state.value.isLoading) {

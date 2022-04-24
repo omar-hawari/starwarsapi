@@ -10,4 +10,7 @@ class StarWarsRepositoryImpl @Inject constructor(
     private val api: StarWarsApi
 ) : StarWarsRepository {
     override suspend fun getFilms(): GenericResponse<List<FilmDto>> = api.getFilms()
+
+    override suspend fun getFilmDetails(filmIndex: Int): FilmDto =
+        api.getFilms(filmIndex)
 }
