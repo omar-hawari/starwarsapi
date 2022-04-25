@@ -6,14 +6,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -77,7 +75,7 @@ fun FilmDetailScreen(
                         )
                         .height(1.dp)
                         .width(1.dp)
-                        .background(Color.White.copy(0.5f))
+                        .background(if (MaterialTheme.colors.isLight) Color.Black else Color.White)
                         .alpha(0.1f)
                 )
             }
@@ -95,7 +93,6 @@ fun FilmDetailScreen(
                             fontFamily = starJediFont
                         )
                     },
-
                     navigationIcon = {
                         IconButton(onClick = { navController.navigateUp() }) {
                             Icon(
@@ -141,8 +138,6 @@ fun FilmDetailScreen(
                         }
                         else -> {
                             Box {
-
-
                                 Column(
                                     modifier = Modifier
                                         .fillMaxSize()

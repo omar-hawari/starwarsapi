@@ -48,6 +48,11 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
+
 //    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 //        kotlinOptions {
 //            freeCompilerArgs += [
@@ -104,5 +109,6 @@ dependencies {
 
 
     implementation "com.google.accompanist:accompanist-swiperefresh:0.24.7-alpha"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
 }

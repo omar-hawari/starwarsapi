@@ -1,5 +1,6 @@
 package com.omarhawari.starwarstrivia.presentation.film_detail.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,12 +24,17 @@ fun CharacterItem(character: Character, onClick: () -> Unit) {
         elevation = 5.dp,
         modifier = Modifier
             .padding(12.dp)
+            .clickable(onClick = onClick)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(12.dp)
         ) {
-            Icon(Icons.Rounded.Person, contentDescription = "Person", modifier = Modifier.size(30.dp))
+            Icon(
+                Icons.Rounded.Person,
+                contentDescription = "Person",
+                modifier = Modifier.size(30.dp)
+            )
             Text(text = character.name)
         }
     }
