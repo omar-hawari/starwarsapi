@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omarhawari.starwarstrivia.domain.use_cases.GetFilmsUseCase
-import com.plcoding.cryptocurrencyappyt.common.Resource
+import com.omarhawari.starwarstrivia.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

@@ -5,10 +5,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omarhawari.starwarstrivia.common.Constants
-import com.omarhawari.starwarstrivia.domain.models.Film
 import com.omarhawari.starwarstrivia.domain.use_cases.*
-import com.omarhawari.starwarstrivia.presentation.films.FilmsState
-import com.plcoding.cryptocurrencyappyt.common.Resource
+import com.omarhawari.starwarstrivia.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

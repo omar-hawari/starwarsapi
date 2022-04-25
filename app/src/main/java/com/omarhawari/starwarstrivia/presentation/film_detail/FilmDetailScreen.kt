@@ -1,6 +1,7 @@
 package com.omarhawari.starwarstrivia.presentation.film_detail
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -25,6 +27,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.omarhawari.starwarstrivia.common.Constants.PARAM_CHARACTER_PATH
+import com.omarhawari.starwarstrivia.presentation.character_detail.CharacterDetailActivity
 import com.omarhawari.starwarstrivia.presentation.film_detail.components.CharacterItem
 import com.omarhawari.starwarstrivia.presentation.film_detail.components.PlanetItem
 import com.omarhawari.starwarstrivia.presentation.film_detail.components.SpaceShipItem
@@ -153,10 +157,23 @@ fun FilmDetailScreen(
 
                                     Text(text = "Characters:")
 
+
+                                    val context = LocalContext.current
                                     LazyRow {
                                         items(characters.map { it.second }) { character ->
-                                            CharacterItem(character) {
 
+                                            CharacterItem(character) {
+                                                context.startActivity(
+                                                    Intent(
+                                                        context,
+                                                        CharacterDetailActivity::class.java
+                                                    ).apply {
+                                                        putExtra(
+                                                            PARAM_CHARACTER_PATH,
+                                                            character.url
+                                                        )
+                                                    }
+                                                )
                                             }
                                         }
                                     }

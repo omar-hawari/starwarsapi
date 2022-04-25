@@ -1,11 +1,9 @@
 package com.omarhawari.starwarstrivia.domain.use_cases
 
-import com.omarhawari.starwarstrivia.data.remote.dto.toPlanet
 import com.omarhawari.starwarstrivia.data.remote.dto.toVehicle
-import com.omarhawari.starwarstrivia.domain.models.Planet
 import com.omarhawari.starwarstrivia.domain.models.Vehicle
 import com.omarhawari.starwarstrivia.domain.repository.StarWarsRepository
-import com.plcoding.cryptocurrencyappyt.common.Resource
+import com.omarhawari.starwarstrivia.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
