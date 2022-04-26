@@ -1,7 +1,6 @@
 package com.omarhawari.starwarstrivia.presentation.film_detail
 
 import com.omarhawari.starwarstrivia.domain.models.*
-import com.omarhawari.starwarstrivia.presentation.films.FilmsState
 
 class FilmDetailState(
     val characters: ArrayList<Pair<Int, Character>> = arrayListOf(),
@@ -38,7 +37,7 @@ class FilmDetailState(
         return copyWith(vehicles = vehicles)
     }
 
-    fun copyWith(
+    private fun copyWith(
         characters: ArrayList<Pair<Int, Character>> = this.characters,
         planets: ArrayList<Pair<Int, Planet>> = this.planets,
         spaceShips: ArrayList<Pair<Int, SpaceShip>> = this.spaceShips,

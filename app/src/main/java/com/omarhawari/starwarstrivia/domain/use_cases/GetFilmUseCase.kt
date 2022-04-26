@@ -10,16 +10,14 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetFilmDetailUseCase @Inject constructor(
+class GetFilmUseCase @Inject constructor(
     private val repository: StarWarsRepository
 ) {
 
-    operator fun invoke(filmIndex: Int): Flow<Resource<Film>> = flow {
+    operator fun invoke(filmPath: String): Flow<Resource<Film>> = flow {
         try {
             emit(Resource.Loading<Film>())
-            val films = repository.getFilmDetails(filmIndex).also {
-                print(it)
-            }.toFilm()
+            val films = repository.getFilm(filmPath).toFilm()
             emit(Resource.Success<Film>(films))
         } catch (e: HttpException) {
             emit(Resource.Error<Film>(e.localizedMessage ?: "Unexpected error occurred."))

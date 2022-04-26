@@ -11,7 +11,10 @@ interface StarWarsApi {
     suspend fun getFilms(): GenericResponse<List<FilmDto>>
 
     @GET("films/{filmIndex}")
-    suspend fun getFilms(@Path("filmIndex") filmIndex: Int): FilmDto
+    suspend fun getFilm(@Path("filmIndex") filmIndex: Int): FilmDto
+
+    @GET
+    suspend fun getFilm(@Url filmPath: String): FilmDto
 
     @GET
     suspend fun getCharacter(@Url characterPath: String): CharacterDto

@@ -10,13 +10,17 @@ class StarWarsRepositoryImpl @Inject constructor(
 ) : StarWarsRepository {
     override suspend fun getFilms(): GenericResponse<List<FilmDto>> = api.getFilms()
 
-    override suspend fun getFilmDetails(filmIndex: Int): FilmDto =
-        api.getFilms(filmIndex)
+    override suspend fun getFilmByIndex(filmIndex: Int): FilmDto =
+        api.getFilm(filmIndex)
 
-    override suspend fun getCharacter(characterPath: String): CharacterDto = api.getCharacter(characterPath)
+    override suspend fun getFilm(filmPath: String): FilmDto = api.getFilm(filmPath = filmPath)
+
+    override suspend fun getCharacter(characterPath: String): CharacterDto =
+        api.getCharacter(characterPath)
 
 
-    override suspend fun getSpaceShip(spaceShipPath: String): SpaceShipDto = api.getSpaceShip(spaceShipPath)
+    override suspend fun getSpaceShip(spaceShipPath: String): SpaceShipDto =
+        api.getSpaceShip(spaceShipPath)
 
     override suspend fun getPlanet(planetPath: String): PlanetDto = api.getPlanet(planetPath)
 

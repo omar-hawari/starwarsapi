@@ -1,26 +1,23 @@
 package com.omarhawari.starwarstrivia.presentation.character_detail
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omarhawari.starwarstrivia.common.Constants
 import com.omarhawari.starwarstrivia.common.Resource
 import com.omarhawari.starwarstrivia.domain.use_cases.GetCharacterUseCase
-import com.omarhawari.starwarstrivia.presentation.film_detail.FilmDetailState
-import com.omarhawari.starwarstrivia.presentation.films.FilmsState
+import com.omarhawari.starwarstrivia.domain.use_cases.GetFilmUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
     private val getCharacterUseCase: GetCharacterUseCase,
-    private val savedStateHandle: SavedStateHandle,
+    private val getFilmUseCase: GetFilmUseCase,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _state = ObservableField(CharacterDetailState())
@@ -50,13 +47,23 @@ class CharacterDetailViewModel @Inject constructor(
                     is Resource.Loading -> CharacterDetailState(isLoading = true)
                 }
             )
-            println(_state.get())
+            if (result is Resource.Success) {
+                result.data!!.films.forEachIndexed { index, path ->
+                    getFilm(path, index)
+                }
+            }
         }.launchIn(viewModelScope)
     }
 
-
-    fun print() {
-        println("savedStateHandle ${savedStateHandle.get<String>(Constants.PARAM_CHARACTER_PATH)}")
+    private fun getFilm(path: String, index: Int) {
+        getFilmUseCase(path).onEach { result ->
+            if (result is Resource.Success) {
+                _state.set(result.data?.let { _state.get()!!.addFilm(it, index) }
+                    ?: _state.get()
+                )
+                println(result.data)
+            }
+        }.launchIn(viewModelScope)
     }
 
 }

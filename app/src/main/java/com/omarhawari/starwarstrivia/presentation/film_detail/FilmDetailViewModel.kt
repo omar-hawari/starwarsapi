@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FilmDetailViewModel @Inject constructor(
-    private val getFilmDetailUseCase: GetFilmDetailUseCase,
+    private val getFilmByIndexDetailUseCase: GetFilmByIndexUseCase,
     private val getCharacterUseCase: GetCharacterUseCase,
     private val getSpaceShipUseCase: GetSpaceShipUseCase,
     private val getPlanetUseCase: GetPlanetUseCase,
@@ -39,7 +39,7 @@ class FilmDetailViewModel @Inject constructor(
     }
 
     private fun getFilmDetail(filmIndex: Int) {
-        getFilmDetailUseCase(filmIndex).onEach { result ->
+        getFilmByIndexDetailUseCase(filmIndex).onEach { result ->
             _state.value = when (result) {
                 is Resource.Success -> FilmDetailState(film = result.data)
                 is Resource.Error -> FilmDetailState(error = result.message ?: "Unexpected error.")

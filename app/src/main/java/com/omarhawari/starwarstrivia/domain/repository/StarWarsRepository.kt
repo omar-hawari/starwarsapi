@@ -6,7 +6,9 @@ interface StarWarsRepository {
 
     suspend fun getFilms(): GenericResponse<List<FilmDto>>
 
-    suspend fun getFilmDetails(filmIndex: Int): FilmDto
+    suspend fun getFilmByIndex(filmIndex: Int): FilmDto
+
+    suspend fun getFilm(filmPath: String): FilmDto
 
     suspend fun getCharacter(characterPath: String): CharacterDto
 

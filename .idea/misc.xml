@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout/activity_character_detail.xml" value="0.21331521739130435" />
+        <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout/activity_character_detail.xml" value="0.1" />
+        <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout/rv_film.xml" value="0.286231884057971" />
       </map>
     </option>
   </component>
