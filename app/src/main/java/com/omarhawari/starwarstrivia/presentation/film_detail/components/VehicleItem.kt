@@ -19,7 +19,7 @@ import com.omarhawari.starwarstrivia.domain.models.Character
 import com.omarhawari.starwarstrivia.domain.models.Vehicle
 
 @Composable
-fun VehicleItem(vehicle: Vehicle, onClick: () -> Unit) {
+fun VehicleItem(vehicle: Vehicle) {
     Card(
         shape = RoundedCornerShape(20.dp),
         elevation = 5.dp,

@@ -2,20 +2,23 @@ package com.omarhawari.starwarstrivia.presentation.film_detail
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -26,11 +29,9 @@ import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.omarhawari.starwarstrivia.common.Constants.PARAM_CHARACTER_PATH
+import com.omarhawari.starwarstrivia.domain.models.Film
 import com.omarhawari.starwarstrivia.presentation.character_detail.CharacterDetailActivity
-import com.omarhawari.starwarstrivia.presentation.film_detail.components.CharacterItem
-import com.omarhawari.starwarstrivia.presentation.film_detail.components.PlanetItem
-import com.omarhawari.starwarstrivia.presentation.film_detail.components.SpaceShipItem
-import com.omarhawari.starwarstrivia.presentation.film_detail.components.VehicleItem
+import com.omarhawari.starwarstrivia.presentation.film_detail.components.*
 import com.omarhawari.starwarstrivia.presentation.ui.theme.starJediFont
 
 
@@ -46,11 +47,6 @@ fun FilmDetailScreen(
     val state = viewModel.state
 
     val film = state.value.film
-
-    val characters = state.value.characters
-    val planets = state.value.planets
-    val spaceShips = state.value.spaceShips
-    val vehicles = state.value.vehicles
 
     val swipeRefreshState = rememberSwipeRefreshState(state.value.isLoading)
 
@@ -103,7 +99,7 @@ fun FilmDetailScreen(
 
                     })
             }
-        ) { _ ->
+        ) {
             SwipeRefresh(
                 state = swipeRefreshState,
                 onRefresh = {
@@ -138,69 +134,53 @@ fun FilmDetailScreen(
                         }
                         else -> {
                             Box {
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .verticalScroll(rememberScrollState())
-                                ) {
 
-                                    Text(text = film!!.openingCrawl, textAlign = TextAlign.Center)
+                                val configuration = LocalConfiguration.current
+                                when (configuration.orientation) {
+                                    Configuration.ORIENTATION_LANDSCAPE -> {
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                        ) {
 
-                                    Text(text = "Director: ${film.director}")
-                                    Text(text = "Producer: ${film.producer}")
-                                    Text(text = "Release Date: ${film.releaseDate}")
+                                            OpeningCrawl(
+                                                film = film!!,
+                                                modifier = Modifier.weight(1f)
+                                            )
 
-                                    Text(text = "Characters:")
+                                            FilmDetails(
+                                                film = film,
+                                                modifier = Modifier.weight(1f),
+                                                state = state
+                                            )
 
-
-                                    val context = LocalContext.current
-                                    LazyRow {
-                                        items(characters.map { it.second }) { character ->
-
-                                            CharacterItem(character) {
-                                                context.startActivity(
-                                                    Intent(
-                                                        context,
-                                                        CharacterDetailActivity::class.java
-                                                    ).apply {
-                                                        putExtra(
-                                                            PARAM_CHARACTER_PATH,
-                                                            character.url
-                                                        )
-                                                    }
-                                                )
-                                            }
                                         }
+
                                     }
+                                    else -> {
+                                        Column(
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                        ) {
 
-                                    Text(text = "Planets:")
-                                    LazyRow {
-                                        items(planets.map { it.second }) { planet ->
-                                            PlanetItem(planet) {
+                                            OpeningCrawl(
+                                                film = film!!,
+                                                modifier = Modifier.weight(1f)
+                                            )
 
-                                            }
+                                            Spacer(modifier = Modifier.height(20.dp))
+
+                                            FilmDetails(
+                                                film = film,
+                                                modifier = Modifier.weight(2f),
+                                                state = state
+                                            )
+
                                         }
-                                    }
 
-
-                                    Text(text = "Star Ships:")
-                                    LazyRow {
-                                        items(spaceShips.map { it.second }) { spaceShip ->
-                                            SpaceShipItem(spaceShip) {
-
-                                            }
-                                        }
-                                    }
-
-                                    Text(text = "Vehicles:")
-                                    LazyRow {
-                                        items(vehicles.map { it.second }) { vehicle ->
-                                            VehicleItem(vehicle) {
-
-                                            }
-                                        }
                                     }
                                 }
+
 
                             }
                         }
@@ -211,6 +191,181 @@ fun FilmDetailScreen(
             }
         }
 
+    }
+
+}
+
+@Composable
+fun OpeningCrawl(film: Film, modifier: Modifier) {
+    Box(modifier = modifier) {
+        LazyColumn {
+            item {
+                Text(
+                    "0pening Crawl",
+                    fontSize = 24.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp)
+                )
+            }
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+            item {
+                Text(
+                    text = film.openingCrawl,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 12.dp)
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(20.dp)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            MaterialTheme.colors.background.copy(alpha = 0.5f),
+                            Color.Transparent
+                        )
+                    )
+                )
+                .align(Alignment.TopCenter)
+        )
+
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(20.dp)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            MaterialTheme.colors.background.copy(alpha = 0.5f)
+                        )
+                    )
+                )
+                .align(Alignment.BottomCenter)
+        )
+    }
+}
+
+@Composable
+fun FilmDetails(film: Film, modifier: Modifier, state: MutableState<FilmDetailState>) {
+
+    val characters = state.value.characters
+    val planets = state.value.planets
+    val spaceShips = state.value.spaceShips
+    val vehicles = state.value.vehicles
+
+
+    LazyColumn(modifier = modifier) {
+        item {
+            Column {
+
+                KeyValueItem("Director", film.director, modifier = Modifier)
+                KeyValueItem("Producer", film.producer, modifier = Modifier)
+                KeyValueItem("Release Date", film.releaseDate, modifier = Modifier)
+
+                Text(text = "Characters:")
+
+
+                val context = LocalContext.current
+                LazyRow {
+
+                    if (characters.isEmpty()) {
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp)
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        }
+                    } else {
+                        items(characters.map { it.second }) { character ->
+
+                            CharacterItem(character) {
+                                context.startActivity(
+                                    Intent(
+                                        context,
+                                        CharacterDetailActivity::class.java
+                                    ).apply {
+                                        putExtra(
+                                            PARAM_CHARACTER_PATH,
+                                            character.url
+                                        )
+                                    }
+                                )
+                            }
+                        }
+
+                    }
+                }
+
+                Text(text = "Planets:")
+                LazyRow {
+                    if (planets.isEmpty())
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp)
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        }
+                    else
+                        items(planets.map { it.second }) { planet ->
+                            PlanetItem(planet)
+                        }
+                }
+
+
+                Text(text = "Star Ships:")
+                LazyRow {
+                    if (spaceShips.isEmpty())
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp)
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        }
+                    else
+                        items(spaceShips.map { it.second }) { spaceShip ->
+                            SpaceShipItem(spaceShip)
+                        }
+                }
+
+                Text(text = "Vehicles:")
+                LazyRow {
+                    if (vehicles.isEmpty())
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp)
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        }
+                    else
+                        items(vehicles.map { it.second }) { vehicle ->
+                            VehicleItem(vehicle)
+                        }
+                }
+            }
+        }
     }
 
 }

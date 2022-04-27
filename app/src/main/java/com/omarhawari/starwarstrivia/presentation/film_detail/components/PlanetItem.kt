@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.omarhawari.starwarstrivia.domain.models.Planet
 
 @Composable
-fun PlanetItem(planet: Planet, onClick: () -> Unit) {
+fun PlanetItem(planet: Planet) {
     Card(
         shape = RoundedCornerShape(20.dp),
         elevation = 5.dp,

@@ -20,7 +20,7 @@ import com.omarhawari.starwarstrivia.domain.models.Planet
 import com.omarhawari.starwarstrivia.domain.models.SpaceShip
 
 @Composable
-fun SpaceShipItem(spaceShip: SpaceShip, onClick: () -> Unit) {
+fun SpaceShipItem(spaceShip: SpaceShip) {
     Card(
         shape = RoundedCornerShape(20.dp),
         elevation = 5.dp,

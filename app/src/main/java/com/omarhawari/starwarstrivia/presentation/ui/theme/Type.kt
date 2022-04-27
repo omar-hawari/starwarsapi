@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 import com.omarhawari.starwarstrivia.R
 
 val starJediFont = FontFamily(
-    Font(R.font.starjedi, FontWeight.Normal),
+    Font(R.font.starwars_1, FontWeight.Normal),
 )
 
 
