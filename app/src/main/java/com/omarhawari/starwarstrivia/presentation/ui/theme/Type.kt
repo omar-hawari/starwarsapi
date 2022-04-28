@@ -1,5 +1,6 @@
 package com.omarhawari.starwarstrivia.presentation.ui.theme
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -15,6 +16,13 @@ val starJediFont = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = starJediFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 40.sp,
+        color = STAR_WARS_YELLOW,
+        lineHeight = 30.sp
+    ),
     body1 = TextStyle(
         fontFamily = starJediFont,
         fontWeight = FontWeight.Normal,

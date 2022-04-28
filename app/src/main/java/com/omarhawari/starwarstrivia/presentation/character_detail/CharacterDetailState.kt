@@ -11,6 +11,17 @@ class CharacterDetailState(
 
     val filmsParsed = films.map { it.second }
 
+    val characterDetails: ArrayList<Pair<String, String>> = character?.run {
+        val details = arrayListOf<Pair<String, String>>()
+
+        details.add(Pair("Birth Year:", character.birthYear))
+        details.add(Pair("Gender:", character.gender))
+        details.add(Pair("Eye Color:", character.eyeColor))
+        details.add(Pair("Hair Color:", character.hairColor))
+
+        details
+    } ?: arrayListOf()
+
     fun addFilm(film: Film, index: Int): CharacterDetailState {
         films.add(Pair(index, film))
         films.sortBy { it.first }

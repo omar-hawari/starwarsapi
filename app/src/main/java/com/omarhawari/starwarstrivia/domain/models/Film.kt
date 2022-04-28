@@ -5,9 +5,7 @@ import android.os.Parcelable
 
 data class Film(
     val characters: List<String>,
-    val created: String,
     val director: String,
-    val edited: String,
     val episodeId: Int,
     val openingCrawl: String,
     val planets: List<String>,
@@ -21,8 +19,6 @@ data class Film(
     constructor(parcel: Parcel) : this(
         parcel.createStringArrayList()!!,
         parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!,
         parcel.readInt(),
         parcel.readString()!!,
         parcel.createStringArrayList()!!,
@@ -32,14 +28,11 @@ data class Film(
         parcel.createStringArrayList()!!,
         parcel.readString()!!,
         parcel.createStringArrayList()!!
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeStringList(characters)
-        parcel.writeString(created)
         parcel.writeString(director)
-        parcel.writeString(edited)
         parcel.writeInt(episodeId)
         parcel.writeString(openingCrawl)
         parcel.writeStringList(planets)

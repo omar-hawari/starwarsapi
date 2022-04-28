@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/drawable/gradient.xml" value="0.2585" />
+        <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout-land/activity_character_detail.xml" value="0.1782006920415225" />
         <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout/activity_character_detail.xml" value="0.1" />
+        <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout/rv_character_details.xml" value="0.286231884057971" />
         <entry key="..\:/Users/engom/AndroidStudioProjects/StarWarsTrivia/app/src/main/res/layout/rv_film.xml" value="0.286231884057971" />
       </map>
     </option>

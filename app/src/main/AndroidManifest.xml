@@ -14,7 +14,8 @@
         <activity
             android:name=".presentation.character_detail.CharacterDetailActivity"
             android:exported="false"
-            android:theme="@style/Theme.OtherTheme" />
+            android:parentActivityName=".presentation.MainActivity"
+            android:theme="@style/Theme.StarWarsTrivia" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true"

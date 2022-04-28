@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omarhawari.starwarstrivia.BR
 import com.omarhawari.starwarstrivia.R
 import com.omarhawari.starwarstrivia.domain.models.Film
+import com.omarhawari.starwarstrivia.presentation.films.components.mapEpisodeIdToImage
 
 class FilmsAdapter(private val films: ArrayList<Film>) :
     RecyclerView.Adapter<BindableViewHolder>() {
@@ -42,7 +44,9 @@ class BindableViewHolder(private val binding: ViewDataBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(film: Film) {
+        println("HEREEREREEREREER")
         binding.setVariable(BR.film, film)
+        binding.setVariable(BR.imageId, mapEpisodeIdToImage[film.episodeId])
     }
 }
 
@@ -58,6 +62,7 @@ private fun getOrCreateAdapter(recyclerView: RecyclerView, films: List<Film>): F
     } else {
         val bindableRecyclerAdapter = FilmsAdapter(films = ArrayList(films))
         recyclerView.adapter = bindableRecyclerAdapter
+        recyclerView.layoutManager = GridLayoutManager(recyclerView.context, 2)
         bindableRecyclerAdapter
     }
 }

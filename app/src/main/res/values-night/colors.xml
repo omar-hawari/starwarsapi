@@ -2,7 +2,6 @@
 <resources>
     <color name="star_wars">#fff9d71c</color>
     <color name="black">#FF000000</color>
-    <color name="black_faded">#50000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_faded">#50FFFFFF</color>
 </resources>

@@ -21,9 +21,7 @@ data class FilmDto(
 
 fun FilmDto.toFilm() = Film(
     characters,
-    created,
     director,
-    edited,
     episode_id,
     opening_crawl,
     planets,

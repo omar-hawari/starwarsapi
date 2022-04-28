@@ -31,10 +31,12 @@
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="0dp"
                 android:textSize="20sp"
                 app:title="@{viewModel.state.character != null ? viewModel.state.character.name : ``}"
-                app:titleTextColor="@color/star_wars" />
+                app:titleTextColor="@color/star_wars">
+
+
+            </androidx.appcompat.widget.Toolbar>
 
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -77,33 +79,36 @@
 
                     </LinearLayout>
 
+
                     <ProgressBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:visibility="@{viewModel.state.loading == true ? View.VISIBLE : View.GONE, default=gone}" />
 
-                    <ScrollView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="@{viewModel.state.character != null ? View.VISIBLE : View.GONE, default=gone}">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/details_rv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:characterDetails="@{viewModel.state.characterDetails}" />
+
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="@{viewModel.state.character != null ? View.VISIBLE : View.GONE, default=gone}">
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/details_rv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:nestedScrollingEnabled="false"
-                                app:characterDetails="@{viewModel.state.characterDetails}" />
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginVertical="12dp"
                                 android:text="Appears In"
                                 android:textAlignment="center"
                                 android:textSize="20sp"
@@ -113,12 +118,13 @@
                                 android:id="@+id/films_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:nestedScrollingEnabled="false"
                                 app:films="@{viewModel.state.filmsParsed}" />
+
 
                         </LinearLayout>
 
-                    </ScrollView>
+                    </LinearLayout>
+
 
                 </RelativeLayout>
 
