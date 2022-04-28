@@ -263,7 +263,7 @@ fun FilmDetails(film: Film, modifier: Modifier, state: MutableState<FilmDetailSt
                 KeyValueItem("Director", film.director, modifier = Modifier)
                 KeyValueItem("Producer", film.producer, modifier = Modifier)
                 KeyValueItem("Release Date", film.releaseDate, modifier = Modifier)
-                KeyValueItem("Episode", film.episodeId.toString(), modifier = Modifier)
+                KeyValueItem("Episode No", film.episodeId.toString(), modifier = Modifier)
 
                 Text(
                     text = "Characters:",
