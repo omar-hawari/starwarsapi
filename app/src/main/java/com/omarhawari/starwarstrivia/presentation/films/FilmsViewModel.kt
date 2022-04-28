@@ -3,13 +3,12 @@ package com.omarhawari.starwarstrivia.presentation.films
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omarhawari.starwarstrivia.domain.use_cases.GetFilmsUseCase
 import com.omarhawari.starwarstrivia.common.Resource
+import com.omarhawari.starwarstrivia.domain.use_cases.GetFilmsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
-
 
 @HiltViewModel
 class FilmsViewModel @Inject constructor(
@@ -34,7 +33,6 @@ class FilmsViewModel @Inject constructor(
                 is Resource.Error -> FilmsState(error = result.message ?: "Unexpected error.")
                 is Resource.Loading -> FilmsState(isLoading = true)
             }
-            println(_state.value)
         }.launchIn(viewModelScope)
     }
 

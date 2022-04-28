@@ -24,22 +24,5 @@ data class SpaceShipDto(
 )
 
 fun SpaceShipDto.toSpaceShip() = SpaceShip(
-    cargo_capacity,
-    consumables,
-    cost_in_credits,
-    created,
-    crew,
-    edited,
-    films,
-    hyperdrive_rating,
-    length,
-    MGLT,
-    manufacturer,
-    max_atmosphering_speed,
-    model,
     name,
-    passengers,
-    pilots,
-    starship_class,
-    url
 )

@@ -19,7 +19,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.omarhawari.starwarstrivia.common.Resource
 import com.omarhawari.starwarstrivia.common.components.StarryBackground
 import com.omarhawari.starwarstrivia.presentation.Screen
 import com.omarhawari.starwarstrivia.presentation.films.components.FilmItem
@@ -60,7 +59,7 @@ fun FilmList(navController: NavController, viewModel: FilmsViewModel = hiltViewM
                     }
                 }
             }
-        ) { _ ->
+        ) {
             SwipeRefresh(
                 state = swipeRefreshState,
                 onRefresh = {
@@ -77,11 +76,8 @@ fun FilmList(navController: NavController, viewModel: FilmsViewModel = hiltViewM
                     when {
                         state.value.isLoading -> {
                             Box(
-                                contentAlignment = Alignment.Center,
                                 modifier = Modifier.fillMaxSize()
-                            ) {
-                                CircularProgressIndicator()
-                            }
+                            )
                         }
                         state.value.error.isNotBlank() -> {
                             Column(

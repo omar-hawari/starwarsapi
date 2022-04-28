@@ -61,7 +61,6 @@ class CharacterDetailViewModel @Inject constructor(
                 _state.set(result.data?.let { _state.get()!!.addFilm(it, index) }
                     ?: _state.get()
                 )
-                println(result.data)
             }
         }.launchIn(viewModelScope)
     }

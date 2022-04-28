@@ -44,7 +44,6 @@ class BindableViewHolder(private val binding: ViewDataBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(film: Film) {
-        println("HEREEREREEREREER")
         binding.setVariable(BR.film, film)
         binding.setVariable(BR.imageId, mapEpisodeIdToImage[film.episodeId])
     }

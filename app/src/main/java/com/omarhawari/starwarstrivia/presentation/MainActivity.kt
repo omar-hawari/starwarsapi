@@ -13,7 +13,6 @@ import androidx.navigation.compose.rememberNavController
 import com.omarhawari.starwarstrivia.common.Constants
 import com.omarhawari.starwarstrivia.presentation.film_detail.FilmDetailScreen
 import com.omarhawari.starwarstrivia.presentation.films.FilmList
-import com.omarhawari.starwarstrivia.presentation.main_screen.SettingsScreen
 import com.omarhawari.starwarstrivia.presentation.ui.theme.StarWarsTriviaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +22,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             StarWarsTriviaTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -33,9 +31,6 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = Screen.FilmsScreen.route
                     ) {
-                        composable(route = Screen.SettingsScreen.route) {
-                            SettingsScreen(navController)
-                        }
                         composable(route = Screen.FilmsScreen.route) {
                             FilmList(navController = navController)
                         }

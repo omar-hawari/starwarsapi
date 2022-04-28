@@ -22,7 +22,7 @@ fun ListItem(
     value: String,
     backgroundId: Int,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = { }
+    onClick: () -> Unit = {  }
 ) {
     Card(
         shape = RoundedCornerShape(10.dp),

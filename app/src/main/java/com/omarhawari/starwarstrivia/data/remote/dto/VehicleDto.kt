@@ -22,20 +22,5 @@ data class VehicleDto(
 )
 
 fun VehicleDto.toVehicle() = Vehicle(
-    cargo_capacity,
-    consumables,
-    cost_in_credits,
-    created,
-    crew,
-    edited,
-    films,
-    length,
-    manufacturer,
-    max_atmosphering_speed,
-    model,
     name,
-    passengers,
-    pilots,
-    url,
-    vehicle_class,
 )

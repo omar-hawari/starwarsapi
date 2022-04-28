@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -38,7 +37,6 @@ import com.omarhawari.starwarstrivia.presentation.character_detail.CharacterDeta
 import com.omarhawari.starwarstrivia.presentation.film_detail.components.KeyValueItem
 import com.omarhawari.starwarstrivia.presentation.film_detail.components.ListItem
 import com.omarhawari.starwarstrivia.presentation.ui.theme.starJediFont
-
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -101,11 +99,8 @@ fun FilmDetailScreen(
                     when {
                         state.value.isLoading -> {
                             Box(
-                                contentAlignment = Alignment.Center,
                                 modifier = Modifier.fillMaxSize()
-                            ) {
-                                CircularProgressIndicator()
-                            }
+                            )
                         }
                         state.value.error.isNotBlank() -> {
                             Column(
