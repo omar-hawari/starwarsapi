@@ -1,12 +1,12 @@
 # General Info
 
-This app utlizes both the traditional view system (XML) and Jetpack Compose.
+This app utilizes both the traditional view system (XML) and Jetpack Compose.
 The app consists of 3 screens:
 - Film List: (Jetpack Compose).
 - Film Details: (Jetpack Compose).
 - Character Details: (XML).
 
-This app is build with the principles of MVVM applied, using Dagger Hilt for Dependecy Injection and Retrofit for REST API calls.
+This app is build with the principles of MVVM applied, using Dagger Hilt for Dependency Injection and Retrofit for REST API calls.
 
 # Folder Structure
 
