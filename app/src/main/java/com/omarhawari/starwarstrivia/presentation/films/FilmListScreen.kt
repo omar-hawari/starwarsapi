@@ -1,6 +1,7 @@
 package com.omarhawari.starwarstrivia.presentation.films
 
 import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,14 +35,13 @@ fun FilmList(navController: NavController, viewModel: FilmsViewModel = hiltViewM
     val swipeRefreshState = rememberSwipeRefreshState(state.value.isLoading)
 
     Box {
-        StarryBackground()
         Scaffold(
             backgroundColor = Color.Transparent,
             topBar = {
                 TopAppBar(
                     backgroundColor = MaterialTheme.colors.background.copy(alpha = 0.2f),
                     modifier = Modifier.height(100.dp),
-                    elevation = 0.dp
+                    elevation = 0.dp,
                 ) {
                     Box(
                         modifier = Modifier

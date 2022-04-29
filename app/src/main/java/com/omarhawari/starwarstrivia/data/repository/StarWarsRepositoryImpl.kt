@@ -18,7 +18,6 @@ class StarWarsRepositoryImpl @Inject constructor(
     override suspend fun getCharacter(characterPath: String): CharacterDto =
         api.getCharacter(characterPath)
 
-
     override suspend fun getSpaceShip(spaceShipPath: String): SpaceShipDto =
         api.getSpaceShip(spaceShipPath)
 

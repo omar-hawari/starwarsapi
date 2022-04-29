@@ -52,7 +52,6 @@ fun FilmDetailScreen(
     val swipeRefreshState = rememberSwipeRefreshState(state.value.isLoading)
 
     Box {
-        StarryBackground()
         Scaffold(
             backgroundColor = Color.Transparent,
             topBar = {
@@ -250,7 +249,6 @@ fun FilmDetails(film: Film, modifier: Modifier, state: MutableState<FilmDetailSt
     val spaceShips = state.value.spaceShips
     val vehicles = state.value.vehicles
 
-
     LazyColumn(modifier = modifier) {
         item {
             Column {
@@ -287,7 +285,11 @@ fun FilmDetails(film: Film, modifier: Modifier, state: MutableState<FilmDetailSt
                             ListItem(
                                 character.name,
                                 R.drawable.jedi_outline,
-                                Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp)
+                                Modifier.padding(
+                                    start = 10.dp,
+                                    top = 10.dp,
+                                    end = 10.dp,
+                                ).offset(y = 10.dp)
                             ) {
                                 context.startActivity(
                                     Intent(

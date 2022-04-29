@@ -1,5 +1,6 @@
 package com.omarhawari.starwarstrivia.presentation.ui.theme
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ProvideTextStyle
@@ -12,14 +13,14 @@ import androidx.compose.ui.text.TextStyle
 private val DarkColorPalette = darkColors(
     primary = STAR_WARS_YELLOW,
     primaryVariant = Color.White,
-    secondary = LIGHT_SABER_RED,
+    secondary = LIGHT_SABER_RED.copy(alpha = 0.4f),
     onError = LIGHT_SABER_RED_DARK
 )
 
 private val LightColorPalette = lightColors(
     primary = STAR_WARS_YELLOW,
     primaryVariant = Color.Black,
-    secondary = LIGHT_SABER_RED_DARK,
+    secondary = LIGHT_SABER_PURPLE.copy(alpha = 0.4f),
     onError = LIGHT_SABER_RED_DARK
 )
 

@@ -22,7 +22,7 @@ fun ListItem(
     value: String,
     backgroundId: Int,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {  }
+    onClick: () -> Unit = { }
 ) {
     Card(
         shape = RoundedCornerShape(10.dp),
@@ -33,7 +33,7 @@ fun ListItem(
             .width(150.dp)
             .aspectRatio(1f)
             .clickable(onClick = onClick),
-        backgroundColor = MaterialTheme.colors.secondary.copy(alpha = 0.4f),
+        backgroundColor = MaterialTheme.colors.secondary,
     ) {
 
         Image(
@@ -59,7 +59,8 @@ fun ListItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colors.primaryVariant
             )
         }
     }

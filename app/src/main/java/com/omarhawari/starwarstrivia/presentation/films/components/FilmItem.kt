@@ -35,7 +35,7 @@ fun FilmItem(
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 16.dp)
             .clickable { onClick() },
-        backgroundColor = MaterialTheme.colors.secondary.copy(alpha = 0.4f),
+        backgroundColor = MaterialTheme.colors.secondary,
         elevation = 0.dp
     ) {
         Row(modifier = Modifier.height(150.dp)) {
